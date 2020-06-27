@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页计算器</title>
+    <style type="text/css">
+        button {
+            width: 100px;
+            height: 100px;
+            font: bolder 30px '黑体';
+        }
+        td {
+            padding: 10px;
+        }
+        table,td {
+            border: 1px solid #cccccc;
+        }
+        #result {
+            font: bolder 50px '黑体';
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="3" id="result">0</td>
+            <td><button value="C">C</button></td>
+        </tr>
+        <tr>
+            <td><button value="1">1</button></td>
+            <td><button value="2">2</button></td>
+            <td><button value="3">3</button></td>
+            <td><button value="*">*</button></td>
+        </tr>
+        <tr>
+            <td><button value="4">4</button></td>
+            <td><button value="5">5</button></td>
+            <td><button value="6">6</button></td>
+            <td><button value="-">-</button></td>
+        </tr>
+        <tr>
+            <td><button value="7">7</button></td>
+            <td><button value="8">8</button></td>
+            <td><button value="9">9</button></td>
+            <td><button value="+">+</button></td>
+        </tr>
+        <tr>
+            <td><button value="0">0</button></td>
+            <td><button value=".">.</button></td>
+            <td><button value="=">=</button></td>
+            <td><button value="/">/</button></td>
+        </tr>
+    </table>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        var btns = document.getElementsByTagName('button');
+        for(var i = 0; i<btns.length;i++){
+            btns[i].onclick = function(){
+                var val = this.value; 
+                switch(val){
+                    case "=":
+                        calculate();
+                        break;
+                    case "C":
+                        document.getElementById("result").innerHTML = "0";
+                        break;
+                    default:
+                        var result = document.getElementById('result');
+                        if(result.innerHTML == 0){
+                            result.innerHTML="";
+                        }
+                        result.innerHTML += val;
+                        break;
+                }
+                
+            }
+        }
+    }
+    function calculate(){
+        var sun = document.getElementById("result").innerHTML;
+        //核心代码
+        var result = eval(sun);
+        document.getElementById("result").innerHTML = result;
+    }
+</script type="text/javascript">
+</html>
